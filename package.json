@@ -1,47 +1,73 @@
 {
   "name": "@akr-y/react-component-library",
-  "version": "1.0.0",
-  "description": "React component Library",
+  "version": "1.0.33",
+  "description": "My React component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
-    "start-playground": "cd playground && npm run start",
-    "i-all": "npm i && cd playground && npm i",
-    "dev": "npm-run-all --parallel build-watch start-playground"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy": "npm run build && npm version patch && npm publish"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akr-y/react-component.git"
-  },
-  "keywords": [],
+  "repository": "https://github.com/akr-y/react-component-library",
+  "keywords": [
+    "react",
+    "components",
+    "component library"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akr-y/react-component/issues"
+    "url": "https://github.com/akr-y/react-component-library/issues"
   },
-  "homepage": "https://github.com/akr-y/react-component#readme",
+  "homepage": "https://github.com/akr-y/react-component-library#readme",
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-backgrounds": "^5.3.13",
+    "@storybook/addon-info": "^5.3.13",
+    "@storybook/addon-knobs": "^5.3.13",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.3.13",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^11.13.2",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/storybook__react": "^4.0.1",
     "@types/styled-components": "^4.1.19",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "babel-preset-react-app": "^9.1.1",
+    "jest": "^25.1.0",
     "npm-run-all": "^4.1.5",
+    "react-docgen-typescript-loader": "^3.6.0",
     "rollup": "^1.25.0",
     "rollup-plugin-delete": "^1.1.0",
     "rollup-plugin-typescript2": "^0.24.3",
-    "typescript": "^3.6.4"
+    "sass-loader": "^8.0.2",
+    "styled-components": "^5.0.1",
+    "ts-jest": "^25.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.2"
   },
   "peerDependencies": {
     "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0"
+    "react-dom": "^16.10.2"
   },
   "files": [
     "dist"
   ],
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "polished": "^3.4.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
