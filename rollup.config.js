@@ -11,7 +11,7 @@ export default [
     ],
     plugins: [
       del({
-        targets: ['dist/*', '**/*.stories.tsx'],
+        targets: ['dist/*'],
       }),
       typescript({
         typescript: require('typescript'),
