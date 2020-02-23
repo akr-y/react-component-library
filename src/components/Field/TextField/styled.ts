@@ -21,6 +21,7 @@ const commonStyle = `
      color: ${darken(0.1, COLOR_BASE)};
   }
   padding: 8px;
+  box-sizing: border-box;
   width: 100%;
   &:focus {
     outline: unset;
