@@ -101,7 +101,7 @@ export type TextFieldProps = NonMutuallyExclusiveProps &
     | { onChange(value: string, id: string): void }
   );
 
-export function TextField({
+export const TextField = ({
   prefix,
   suffix,
   placeholder,
@@ -136,7 +136,7 @@ export function TextField({
   onChange,
   onFocus,
   onBlur,
-}: TextFieldProps) {
+}: TextFieldProps) => {
   const [height, setHeight] = useState<number | null>(null);
   const [focus, setFocus] = useState(Boolean(focused));
 
@@ -282,4 +282,4 @@ export function TextField({
     }
     inputRef.current && inputRef.current.focus();
   }
-}
+};
