@@ -13,6 +13,7 @@ const commonStyle = `
     -1px -1px 1px ${COLOR_DARKER}, 1px 1px 1px ${COLOR_LIGHTER};
   font-size: 16px;
   padding: 8px;
+  width: 100%;
   &:focus {
     outline: unset;
   }
@@ -24,4 +25,14 @@ export const Input = styled.input`
 
 export const TextArea = styled.textarea`
   ${commonStyle}
+`;
+
+export const Label = styled.p`
+  color: ${darken(0.1, COLOR_DARKER)};
+  font-size: 14px;
+  margin: 0;
+`;
+
+export const Container = styled.div`
+  width: auto;
 `;

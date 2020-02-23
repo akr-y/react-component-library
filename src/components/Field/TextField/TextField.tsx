@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Error, Key } from '../../../types';
-import { Input, TextArea } from './styled';
+import { Input, TextArea, Label, Container } from './styled';
 
 type Type =
   | 'text'
@@ -36,8 +36,6 @@ interface NonMutuallyExclusiveProps {
   labelHidden?: boolean;
   /** Disable the input */
   disabled?: boolean;
-  /** Show a clear text button in the input */
-  clearButton?: boolean;
   /** Disable editing of the input */
   readOnly?: boolean;
   /** Automatically focus the input */
@@ -84,8 +82,6 @@ interface NonMutuallyExclusiveProps {
   showCharacterCount?: boolean;
   /** Determines the alignment of the text in the input */
   align?: Alignment;
-  /** Callback when clear button is clicked */
-  onClearButtonClick?(id: string): void;
   /** Callback when value is changed */
   onChange?(value: string, id: string): void;
   /** Callback when input is focused */
@@ -110,7 +106,6 @@ export const TextField = ({
   label,
   labelHidden,
   disabled,
-  clearButton,
   readOnly,
   autoFocus,
   focused,
@@ -132,7 +127,6 @@ export const TextField = ({
   ariaControls,
   ariaActiveDescendant,
   ariaAutocomplete,
-  onClearButtonClick,
   onChange,
   onFocus,
   onBlur,
@@ -169,17 +163,6 @@ export const TextField = ({
       {suffix}
     </div>
   ) : null;
-
-  const clearButtonMarkup =
-    clearButton && normalizedValue !== '' ? (
-      <button
-        type="button"
-        onClick={handleClearButtonPress}
-        disabled={disabled}
-      >
-        -
-      </button>
-    ) : null;
 
   const style = multiline && height ? { height } : null;
 
@@ -232,17 +215,15 @@ export const TextField = ({
   });
 
   return (
-    <div onFocus={handleFocus} onBlur={handleBlur} onClick={handleClick}>
-      {prefixMarkup}
-      {input}
-      {suffixMarkup}
-      {clearButtonMarkup}
-    </div>
+    <Container>
+      {label && !labelHidden ? <Label>{label}</Label> : null}
+      <div onFocus={handleFocus} onBlur={handleBlur} onClick={handleClick}>
+        {prefixMarkup}
+        {input}
+        {suffixMarkup}
+      </div>
+    </Container>
   );
-
-  function handleClearButtonPress() {
-    onClearButtonClick && onClearButtonClick(id);
-  }
 
   function handleKeyPress(event: React.KeyboardEvent) {
     const { key, which } = event;
