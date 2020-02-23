@@ -15,3 +15,5 @@ yarn-error.log*
 #rollup
 /dist
 .env
+
+storybook-static
