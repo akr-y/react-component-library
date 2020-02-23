@@ -12,6 +12,14 @@ const commonStyle = `
   box-shadow: 1px 1px 3px ${COLOR_DARKER} inset, -1px -1px 3px ${COLOR_LIGHTER} inset,
     -1px -1px 1px ${COLOR_DARKER}, 1px 1px 1px ${COLOR_LIGHTER};
   font-size: 16px;
+  color: ${darken(0.1, COLOR_DARKER)};
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: ${darken(0.1, COLOR_BASE)};
+  }
+  :-ms-input-placeholder {
+     color: ${darken(0.1, COLOR_BASE)};
+  }
   padding: 8px;
   width: 100%;
   &:focus {

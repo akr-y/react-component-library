@@ -16,6 +16,7 @@ export const defaultTextField = () => {
         label="Label"
         labelHidden
         value={text}
+        placeholder={'placeholder'}
         onChange={(v: string) => {
           setText(v);
         }}
