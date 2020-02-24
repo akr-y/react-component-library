@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-npm install
+npm install @akr-y/react-component-library
 ```
 
 ## Development
@@ -12,7 +12,7 @@ npm install
 npm run storybook
 ```
 
-## Publish
+## Publish to npm
 
 ```sh
 npm run deploy
