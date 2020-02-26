@@ -68,6 +68,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
+    "@shopify/javascript-utilities": "^2.4.1",
     "@shopify/polaris-icons": "^3.9.0",
     "polished": "^3.4.4",
     "react": "^16.12.0",
