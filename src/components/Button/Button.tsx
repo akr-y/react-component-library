@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyledButton, StyledAnchor } from './styled';
 
-type Size = 'slim' | 'medium' | 'large';
-type TextAlign = 'left' | 'right' | 'center';
+export type Size = 'slim' | 'medium' | 'large';
+export type TextAlign = 'left' | 'right' | 'center';
 
 export interface ButtonProps {
   /** The content to display inside the button */
@@ -91,9 +91,15 @@ export const Button = ({
       </a>
     ) : (
       <StyledAnchor
+        size={size}
         id={id}
         href={url}
         target={external ? '_blank' : ''}
+        plain={plain}
+        primary={primary}
+        outline={outline}
+        textAlign={textAlign}
+        destructive={destructive}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -105,11 +111,17 @@ export const Button = ({
   } else {
     buttonMarkup = (
       <StyledButton
+        size={size}
         id={id}
         type={type}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
+        plain={plain}
+        primary={primary}
+        outline={outline}
+        textAlign={textAlign}
+        destructive={destructive}
         disabled={isDisabled}
         aria-label={accessibilityLabel}
         role={loading ? 'alert' : undefined}
