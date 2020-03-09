@@ -1,6 +1,11 @@
 import React, { useRef, useEffect, memo } from 'react';
 import { Months, isSameDay } from '@shopify/javascript-utilities/dates';
-import { DayStyled, EmptyDay } from '../../styled';
+import {
+  DayStyled,
+  EmptyDay,
+  DayShadowLayer,
+  DayContainer,
+} from '../../styled';
 // import styles from '../../DatePicker.scss';
 
 export interface DayProps {
@@ -36,7 +41,11 @@ export const Day = memo(function Day({
   }, [focused]);
 
   if (!day) {
-    return <EmptyDay></EmptyDay>;
+    return (
+      <DayContainer>
+        <EmptyDay></EmptyDay>
+      </DayContainer>
+    );
   }
   const handleClick = onClick && !disabled ? onClick.bind(null, day) : noop;
   const today = isSameDay(new Date(), day);
@@ -51,21 +60,24 @@ export const Day = memo(function Day({
   ].join('');
 
   return (
-    <DayStyled
-      onFocus={() => onFocus(day)}
-      type="button"
-      ref={dayNode}
-      tabIndex={tabIndex}
-      onMouseOver={() => onHover(hoverValue)}
-      onClick={handleClick}
-      aria-label={ariaLabel}
-      aria-selected={selected}
-      selected={selected}
-      aria-disabled={disabled}
-      role="gridcell"
-    >
-      {date}
-    </DayStyled>
+    <DayContainer>
+      <DayStyled
+        onFocus={() => onFocus(day)}
+        type="button"
+        ref={dayNode}
+        tabIndex={tabIndex}
+        onMouseOver={() => onHover(hoverValue)}
+        onClick={handleClick}
+        aria-label={ariaLabel}
+        aria-selected={selected}
+        selected={selected}
+        aria-disabled={disabled}
+        role="gridcell"
+      >
+        {date}
+      </DayStyled>
+      {selected && <DayShadowLayer />}
+    </DayContainer>
   );
 });
 

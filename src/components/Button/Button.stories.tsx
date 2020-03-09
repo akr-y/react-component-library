@@ -6,9 +6,10 @@ export default { title: 'Button' };
 
 export const defaultButton = () => (
   <Stack>
-    <Button>Text</Button>
-    <Button primary>Text</Button>
-    <Button destructive>Text</Button>
-    <Button plain>Text</Button>
+    <Button>Default</Button>
+    <Button primary>Primary</Button>
+    <Button destructive>Destructive</Button>
+    <Button outline>Outine</Button>
+    <Button plain>Plain</Button>
   </Stack>
 );

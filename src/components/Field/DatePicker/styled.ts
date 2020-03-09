@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 import { base, tight, extraTight } from '../../../utilities/spacing';
-import { primary, darker } from '../../../utilities/color';
+import { primary, darker, lighter } from '../../../utilities/color';
 
 const FONT_SIZE = 12;
 const ZINDEX_SELECTED = 30;
@@ -61,38 +61,52 @@ const stateHandler = (
   return normal;
 };
 
-export const DayStyled = styled.button<DayProps>`
-  display: block;
+export const DayContainer = styled.div`
+  position: relative;
   flex: 1 0 0%;
   width: ${100 / 7}%;
   margin: 0;
+`;
+
+export const DayStyled = styled.button<DayProps>`
+  display: block;
   padding: ${tight}px;
   color: ${props => stateHandler(props, 'inherit', '#fff', darker)};
-  background: ${props => stateHandler(props, 'transparent', primary, '#ddd')};
-  border: ${props =>
-    props.selected
-      ? `1px solid ${darken(0.1, primary)}`
-      : `1px solid ${darker}`};
-  border-radius: 0;
+  background: ${props => stateHandler(props, 'transparent', darker, '#ddd')};
+  border: unset;
   outline: none;
   font-size: ${FONT_SIZE}px;
   font-weight: ${props => (props.today ? 700 : 400)};
   text-align: center;
   cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   z-index: ${props => (props.selected ? ZINDEX_SELECTED : 1)};
-  margin-left: -1px;
   transition: 0.3s;
+  position: relative;
+  width: 100%;
   &:first {
     margin-left: 0;
   }
   &:hover {
     color: #fff;
-    background: ${lighten(0.15, primary)};
+    background: ${darken(0.15, darker)};
     border-color: ${primary};
   }
   &:focus {
-    box-shadow: inset 0 0 0 2px ${primary};
+    // box-shadow: inset 0 0 0 2px ${primary};
   }
+`;
+
+export const DayShadowLayer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: -8px -8px 20px ${lighter}, 8px 8px 20px ${darker},
+    -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: -2;
 `;
 
 export const EmptyDay = styled.div`
@@ -101,8 +115,6 @@ export const EmptyDay = styled.div`
   width: ${100 / 7}%;
   margin: 0;
   padding: ${tight}px;
-  border: 1px solid ${darker};
-  margin-left: -1px;
   &:first {
     margin-left: 0;
   }
