@@ -55,19 +55,19 @@ export function weekdayName(weekday: Weekdays) {
   }
 }
 
-export function dateIsInList(day: Date | null, dates: Date[]) {
-  if (day == null) {
-    return false;
-  }
-
-  return Boolean(dates.includes(day));
-}
+const isSameDate = (a: Date, b: Date) => {
+  return (
+    new Date(a).toISOString().split('T')[0] ==
+    new Date(b).toISOString().split('T')[0]
+  );
+};
 
 export function dateIsSelected(day: Date | null, dates: Date[]) {
   if (day == null) {
     return false;
   }
-  return Boolean(dates.includes(day));
+
+  return Boolean(dates.map(_ => isSameDate(_, day)).includes(true));
 }
 function arrayUnique(array: Date[]) {
   let i = 0;

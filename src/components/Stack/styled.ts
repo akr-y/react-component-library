@@ -51,6 +51,7 @@ export const Stack = styled.div<{
   distribution?: Distribution;
   alignment?: Alignment;
   vertical?: boolean;
+  fill?: boolean;
 }>`
   align-items: stretch;
   display: flex;

@@ -15,7 +15,6 @@ import {
   getNewRange,
   monthName,
   weekdayName,
-  dateIsInList,
   dateIsSelected,
 } from '../../utilities';
 
@@ -102,7 +101,6 @@ export function Month({
         onFocus={onFocus}
         onClick={handleDateClick}
         selected={selected != null && dateIsSelected(day, selected)}
-        inRange={selected != null && dateIsInList(day, selected)}
         disabled={disabled}
       />
     );

@@ -12,7 +12,6 @@ export interface DayProps {
   focused?: boolean;
   day?: Date;
   selected?: boolean;
-  inRange?: boolean;
   inHoveringRange?: boolean;
   disabled?: boolean;
   lastDayOfMonth?: any;
