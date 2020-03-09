@@ -35,7 +35,16 @@ export const WeekStyled = styled.div`
     margin-top: 0;
   }
 `;
-
+export const WeeksContainer = styled.div`
+  border-radius: 8px;
+  box-shadow: 1px 1px 3px ${lighten(0.1, darker)}, -1px -1px 3px ${lighter};
+  overflow: hidden;
+  transition-duration: 0.3s;
+  &:hover {
+    box-shadow: 4px 4px 10px ${lighten(0.1, darker)}, -4px -4px 10px ${lighter},
+      -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};
+  }
+`;
 export const WeekHeadings = styled.div`
   display: flex;
 `;
@@ -100,7 +109,7 @@ export const DayShadowLayer = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  box-shadow: -8px -8px 20px ${lighter}, 8px 8px 20px ${darker},
+  box-shadow: -4px -4px 12px ${lighter}, 4px 4px 12px ${darker},
     -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};
   content: '';
   display: block;

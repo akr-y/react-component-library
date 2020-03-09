@@ -8,7 +8,13 @@ import {
   isSameDay,
   getWeeksForMonth,
 } from '@shopify/javascript-utilities/dates';
-import { WeekStyled, MonthStyled, Title, WeekHeadings } from '../../styled';
+import {
+  WeekStyled,
+  MonthStyled,
+  Title,
+  WeekHeadings,
+  WeeksContainer,
+} from '../../styled';
 import { Day } from '../Day';
 import { Weekday } from '../Weekday';
 import {
@@ -118,7 +124,7 @@ export function Month({
         {`${monthName(month)?.toUpperCase()}`} {year}
       </Title>
       <WeekHeadings role="rowheader">{weekdays}</WeekHeadings>
-      {weeksMarkup}
+      <WeeksContainer>{weeksMarkup}</WeeksContainer>
     </MonthStyled>
   );
 }
