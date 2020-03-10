@@ -164,8 +164,6 @@ export const TextField = ({
     </div>
   ) : null;
 
-  const style = multiline && height ? { height } : null;
-
   const describedBy: string[] = [];
   if (error) {
     describedBy.push(`${id}Error`);
@@ -181,7 +179,7 @@ export const TextField = ({
     labelledBy.push(`${id}Suffix`);
   }
 
-  const input = React.createElement(multiline ? TextArea : Input, {
+  const textareaProps = {
     name,
     id,
     disabled,
@@ -193,10 +191,7 @@ export const TextField = ({
     onFocus,
     onBlur,
     'onKeyPress': handleKeyPress,
-    style,
-    'autoComplete': autoComplete,
-    'onChange': handleChange,
-    'ref': inputRef,
+    'onChange': handleTextAreaChange,
     min,
     max,
     step,
@@ -210,16 +205,45 @@ export const TextField = ({
     'aria-invalid': Boolean(error),
     'aria-owns': ariaOwns,
     'aria-activedescendant': ariaActiveDescendant,
-    'aria-autocomplete': ariaAutocomplete,
     'aria-controls': ariaControls,
-  });
+  };
+  const inputProps = {
+    name,
+    id,
+    disabled,
+    readOnly,
+    role,
+    autoFocus,
+    'value': normalizedValue,
+    placeholder,
+    onFocus,
+    onBlur,
+    'onKeyPress': handleKeyPress,
+    'onChange': handleInputChange,
+    min,
+    max,
+    step,
+    minLength,
+    maxLength,
+    spellCheck,
+    pattern,
+    'type': inputType,
+    'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
+    'aria-labelledby': labelledBy.join(' '),
+    'aria-invalid': Boolean(error),
+    'aria-owns': ariaOwns,
+    'aria-activedescendant': ariaActiveDescendant,
+    'aria-controls': ariaControls,
+  };
+  const textarea = <TextArea {...textareaProps} />;
+  const input = <Input {...inputProps} />;
 
   return (
     <Container>
       {label && !labelHidden ? <Label>{label}</Label> : null}
       <div onFocus={handleFocus} onBlur={handleBlur} onClick={handleClick}>
         {prefixMarkup}
-        {input}
+        {multiline ? textarea : input}
         {suffixMarkup}
       </div>
     </Container>
@@ -242,7 +266,11 @@ export const TextField = ({
     );
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    onChange && onChange(event.currentTarget.value, id);
+  }
+
+  function handleTextAreaChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     onChange && onChange(event.currentTarget.value, id);
   }
 
