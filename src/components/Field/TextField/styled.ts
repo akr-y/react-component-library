@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { darken } from 'polished';
 
 const RADIUS = '10px'; // ToDo: Should be provided from theme configure

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const BASE_SPACING = 14;
 const ItemComponent = styled.div<{ fill: boolean }>`

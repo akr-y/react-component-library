@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { lighten, darken } from 'polished';
 import { base, tight, extraTight } from '../../../utilities/spacing';
 import { primary, darker, lighter } from '../../../utilities/color';
