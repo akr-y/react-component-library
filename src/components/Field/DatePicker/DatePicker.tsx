@@ -74,6 +74,7 @@ export const DatePicker = ({
 
   const handleMonthChangeClick = useCallback(
     (month: Months, year: Year) => {
+      console.log(month, year);
       if (!onMonthChange) {
         return;
       }
@@ -120,6 +121,7 @@ export const DatePicker = ({
       <Header>
         <Button
           plain
+          size="slim"
           accessibilityLabel={`${previousMonthName} / ${showPreviousYear}`}
           onClick={() =>
             handleMonthChangeClick(showPreviousMonth, showPreviousYear)
@@ -129,6 +131,7 @@ export const DatePicker = ({
         </Button>
         <Button
           plain
+          size="slim"
           accessibilityLabel={`${nextMonth} / ${nextYear}`}
           onClick={() => handleMonthChangeClick(showNextMonth, showNextYear)}
         >
