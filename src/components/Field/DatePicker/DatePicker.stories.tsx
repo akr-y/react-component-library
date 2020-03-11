@@ -11,7 +11,6 @@ export default { title: 'DatePicker' };
 export const defaultDatePicker = () => {
   const [days, setDays] = useState<Date[]>([new Date('2020-02-05 00:00:00')]);
   const handler = (d: Date[]) => {
-    console.log(d);
     setDays(d);
   };
   return (
