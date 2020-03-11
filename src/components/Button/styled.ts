@@ -10,11 +10,22 @@ import {
   base,
 } from '../../utilities/color';
 
+type ButtonProps = {
+  size?: Size;
+  align?: TextAlign;
+  primary?: boolean;
+  disabled?: boolean;
+  destructive?: boolean;
+  loading?: boolean;
+  plain?: boolean;
+  outline?: boolean;
+  textAlign?: TextAlign;
+};
 const RADIUS = '6px'; // ToDo: Should be provided from theme configure
-const commonStyle = `
+const commonStyle = (props: ButtonProps) => `
   border: unset;
   border-radius: ${RADIUS};
-  padding: 10px 16px;
+  padding: ${paddingSize(props.size)};
   font-size: 16px;
   font-weight: normal;
   outline: unset;
@@ -28,16 +39,15 @@ const commonFeedbackStyle = `
   transition-timing-function: cubic-bezier(.15,2.1,.5,.60);
 `;
 
-type ButtonProps = {
-  size?: Size;
-  align?: TextAlign;
-  primary?: boolean;
-  disabled?: boolean;
-  destructive?: boolean;
-  loading?: boolean;
-  plain?: boolean;
-  outline?: boolean;
-  textAlign?: TextAlign;
+const paddingSize = (s?: Size) => {
+  switch (s) {
+    case 'slim':
+      return '4px 8px;';
+    case 'large':
+      return '16px 24px;';
+    default:
+      return '10px 16px;';
+  }
 };
 
 const background = (props: ButtonProps) => {
