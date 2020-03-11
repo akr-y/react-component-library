@@ -33,7 +33,7 @@ export interface RadioButtonProps {
   onBlur?(): void;
 }
 
-export function RadioButton({
+export const RadioButton = ({
   ariaDescribedBy: ariaDescribedByProp,
   label,
   labelHidden,
@@ -46,7 +46,7 @@ export function RadioButton({
   id: idProp,
   name: nameProp,
   value,
-}: RadioButtonProps) {
+}: RadioButtonProps) => {
   const id = idProp || '';
   const name = nameProp || id;
   const inputNode = useRef<HTMLInputElement>(null);
@@ -131,4 +131,4 @@ export function RadioButton({
       </span>
     </Choice>
   );
-}
+};
