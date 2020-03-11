@@ -1,11 +1,4 @@
-import {
-  Range,
-  Months,
-  Weekdays,
-  isSameDay,
-  isDateAfter,
-  isDateBefore,
-} from '@shopify/javascript-utilities/dates';
+import { Range, Months, Weekdays } from '@shopify/javascript-utilities/dates';
 
 export function monthName(month: Months) {
   switch (month) {
@@ -86,8 +79,8 @@ export function getNewList(dates: Date[] | undefined, selected: Date) {
   if (dates == null) {
     return [selected];
   }
-  if (dates.includes(selected)) {
-    return dates.filter(_ => _ !== selected);
+  if (dates.find(_ => isSameDate(_, selected))) {
+    return dates.filter(_ => !isSameDate(_, selected));
   }
   return arrayUnique(dates.concat([selected]));
 }
