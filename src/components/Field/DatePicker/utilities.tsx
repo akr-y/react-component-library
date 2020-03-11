@@ -82,9 +82,12 @@ function arrayUnique(array: Date[]) {
   return array;
 }
 
-export function getNewRange(dates: Date[] | undefined, selected: Date) {
+export function getNewList(dates: Date[] | undefined, selected: Date) {
   if (dates == null) {
     return [selected];
+  }
+  if (dates.includes(selected)) {
+    return dates.filter(_ => _ !== selected);
   }
   return arrayUnique(dates.concat([selected]));
 }

@@ -67,6 +67,7 @@ export const DatePicker = ({
 
   const handleDateSelection = useCallback(
     (dates: Date[]) => {
+      console.log(dates);
       onChange(dates);
     },
     [onChange]

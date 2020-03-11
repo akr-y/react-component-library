@@ -18,7 +18,7 @@ import {
 import { Day } from '../Day';
 import { Weekday } from '../Weekday';
 import {
-  getNewRange,
+  getNewList,
   monthName,
   weekdayName,
   dateIsSelected,
@@ -80,7 +80,7 @@ export function Month({
 
   const handleDateClick = useCallback(
     (selectedDate: Date) => {
-      onChange(getNewRange(selected, selectedDate));
+      onChange(getNewList(selected, selectedDate));
     },
     [onChange, selected]
   );
