@@ -6,7 +6,7 @@ export type TextAlign = 'left' | 'right' | 'center';
 
 export interface ButtonProps {
   /** The content to display inside the button */
-  children?: string | string[] | React.ReactNode;
+  children?: React.ReactNode | React.ReactElement;
   /** A destination to link to, rendered in the href attribute of a link */
   url?: string;
   /** A unique identifier for the button */
