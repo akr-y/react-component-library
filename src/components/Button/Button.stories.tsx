@@ -11,5 +11,6 @@ export const defaultButton = () => (
     <Button destructive>Destructive</Button>
     <Button outline>Outine</Button>
     <Button plain>Plain</Button>
+    <Button pressed>Pressed</Button>
   </Stack>
 );

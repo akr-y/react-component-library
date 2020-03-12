@@ -18,6 +18,7 @@ type ButtonProps = {
   destructive?: boolean;
   loading?: boolean;
   plain?: boolean;
+  pressed?: boolean;
   outline?: boolean;
   textAlign?: TextAlign;
 };
@@ -88,6 +89,11 @@ const boxShadow = (props: ButtonProps) => {
   }
   if (props.outline) {
     return `-1px -1px 1px ${lighter}, 1px 1px 1px ${darker};`;
+  }
+  if (props.pressed) {
+    return `
+    1px 1px 3px ${darker} inset, -1px -1px 3px ${lighter} inset,
+      -1px -1px 1px ${darker}, 1px 1px 1px ${lighter};`;
   }
   return `-4px -4px 14px ${lighter}, 4px 4px 14px ${darker}, -1px -1px 2px ${lighter}, 1px 1px 2px ${darker};`;
 };
