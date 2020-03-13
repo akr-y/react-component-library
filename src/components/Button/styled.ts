@@ -3,10 +3,11 @@ import { darken } from 'polished';
 import { Size, TextAlign } from './Button';
 import {
   primary,
-  secondary,
+  minor,
   danger,
   darker,
   lighter,
+  secondary,
   base,
 } from '../../utilities/color';
 
@@ -14,6 +15,7 @@ type ButtonProps = {
   size?: Size;
   align?: TextAlign;
   primary?: boolean;
+  secondary?: boolean;
   disabled?: boolean;
   destructive?: boolean;
   loading?: boolean;
@@ -27,6 +29,10 @@ const commonStyle = (props: ButtonProps) => `
   border: unset;
   border-radius: ${RADIUS};
   padding: ${paddingSize(props.size)};
+  box-shadow: ${boxShadow(props)}
+  background: ${background(props)}
+  color: ${fontColor(props)};
+  pointer-events: ${props.disabled ? ' none' : 'unset'};
   font-size: 16px;
   font-weight: normal;
   outline: unset;
@@ -52,6 +58,9 @@ const paddingSize = (s?: Size) => {
 };
 
 const background = (props: ButtonProps) => {
+  if (props.disabled) {
+    return `${minor};`;
+  }
   if (props.plain) {
     return 'unset;';
   }
@@ -61,6 +70,9 @@ const background = (props: ButtonProps) => {
   if (props.primary) {
     return `${primary};`;
   }
+  if (props.secondary) {
+    return `${secondary};`;
+  }
   if (props.outline) {
     return `${base};`;
   }
@@ -68,10 +80,10 @@ const background = (props: ButtonProps) => {
 };
 
 const fontColor = (props: ButtonProps) => {
-  if (props.destructive) {
-    return `#fff;`;
+  if (props.disabled) {
+    return `${darker};`;
   }
-  if (props.primary) {
+  if (props.destructive || props.primary || props.secondary) {
     return `#fff;`;
   }
   return `${darken(0.1, darker)};`;
@@ -95,24 +107,21 @@ const boxShadow = (props: ButtonProps) => {
     1px 1px 3px ${darker} inset, -1px -1px 3px ${lighter} inset,
       -1px -1px 1px ${darker}, 1px 1px 1px ${lighter};`;
   }
+  if (props.disabled) {
+    return `unset;`;
+  }
   return `-4px -4px 14px ${lighter}, 4px 4px 14px ${darker}, -1px -1px 2px ${lighter}, 1px 1px 2px ${darker};`;
 };
 
 export const StyledButton = styled.button<ButtonProps>`
-  ${commonStyle}
-  box-shadow: ${props => boxShadow(props)}
-  background: ${props => background(props)}
-  color: ${props => fontColor(props)}
+  ${props => commonStyle(props)}
   &:hover {
     ${commonFeedbackStyle}
   }
 `;
 
 export const StyledAnchor = styled.a<ButtonProps>`
-  ${commonStyle}
-  box-shadow: ${props => boxShadow(props)}
-  background: ${props => background(props)}
-  color: ${props => fontColor(props)}
+  ${props => commonStyle(props)}
   text-decolation: none;
   &:hover {
     ${commonFeedbackStyle}

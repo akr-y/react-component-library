@@ -13,6 +13,7 @@ export interface ButtonProps {
   id?: string;
   /** Provides extra visual weight and identifies the primary action in a set of buttons */
   primary?: boolean;
+  secondary?: boolean;
   /** Indicates a dangerous or potentially negative action */
   destructive?: boolean;
   /** Disables the button, disallowing merchant interaction */
@@ -68,6 +69,7 @@ export const Button = ({
   destructive,
   plain,
   monochrome,
+  secondary,
   submit,
   size = DEFAULT_SIZE,
   textAlign,
@@ -97,6 +99,7 @@ export const Button = ({
         target={external ? '_blank' : ''}
         plain={plain}
         primary={primary}
+        secondary={secondary}
         pressed={pressed}
         outline={outline}
         textAlign={textAlign}
@@ -113,6 +116,7 @@ export const Button = ({
     buttonMarkup = (
       <StyledButton
         size={size}
+        secondary={secondary}
         id={id}
         type={type}
         onClick={onClick}

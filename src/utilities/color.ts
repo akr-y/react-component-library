@@ -5,3 +5,4 @@ export const primary = '#3C00AB';
 export const danger = '#E92D48';
 export const warning = '#F96552';
 export const secondary = '#191b32';
+export const minor = '#c7d3e4';
