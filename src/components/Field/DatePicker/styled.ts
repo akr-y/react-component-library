@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { lighten, darken } from 'polished';
 import { base, tight, extraTight } from '../../../utilities/spacing';
-import { primary, darker, lighter } from '../../../utilities/color';
+import { primary, darker, secondary, lighter } from '../../../utilities/color';
 
 const FONT_SIZE = 12;
 const ZINDEX_SELECTED = 30;
@@ -81,7 +81,7 @@ export const DayStyled = styled.button<DayProps>`
   display: block;
   padding: ${tight}px;
   color: ${props => stateHandler(props, 'inherit', '#fff', darker)};
-  background: ${props => stateHandler(props, 'transparent', darker, '#ddd')};
+  background: ${props => stateHandler(props, 'transparent', secondary, '#ddd')};
   border: unset;
   outline: none;
   font-size: ${FONT_SIZE}px;
