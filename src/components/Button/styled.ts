@@ -11,6 +11,12 @@ import {
   base,
   colorMap,
 } from '../../utilities/color';
+import {
+  shadowDefault,
+  shadowLite,
+  shadowScaled,
+  shadowInset,
+} from '../../utilities/shadow';
 
 type ButtonProps = {
   size?: Size;
@@ -88,9 +94,8 @@ const styleFeedbackWithProps = (props: ButtonProps) => `
   box-shadow: ${
     props.pressed
       ? `
-      0px 0px 0px ${darker} inset, 0 0 0 ${lighter} inset,
-        -8px -8px 20px ${lighter}, 8px 8px 20px ${darker};`
-      : `-8px -8px 20px ${lighter}, 8px 8px 20px ${darker}, -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};`
+      0px 0px 0px ${darker} inset, 0 0 0 ${lighter} inset, ${shadowScaled};`
+      : `${shadowScaled};`
   }
   transition-duration: 0.2s;
   transition-timing-function: ease-oun;
@@ -143,24 +148,16 @@ const boxShadow = (props: ButtonProps) => {
   if (props.plain) {
     return 'unset;';
   }
-  if (props.destructive) {
-    return `-4px -4px 14px ${lighter}, 4px 4px 14px ${darker}, -1px -1px 2px ${lighter}, 1px 1px 2px ${darker};`;
-  }
-  if (props.primary) {
-    return `-4px -4px 14px ${lighter}, 4px 4px 14px ${darker}, -1px -1px 2px ${lighter}, 1px 1px 2px ${darker};`;
-  }
   if (props.outline) {
-    return `-1px -1px 1px ${lighter}, 1px 1px 1px ${darker};`;
+    return `${shadowLite};`;
   }
   if (props.pressed) {
-    return `
-    1px 1px 3px ${darker} inset, -1px -1px 3px ${lighter} inset,
-      -1px -1px 1px ${darker}, 1px 1px 1px ${lighter};`;
+    return `${shadowInset};`;
   }
   if (props.disabled) {
     return `unset;`;
   }
-  return `-4px -4px 14px ${lighter}, 4px 4px 14px ${darker}, -1px -1px 2px ${lighter}, 1px 1px 2px ${darker};`;
+  return `${shadowDefault};`;
 };
 
 export const StyledButton = styled.button<ButtonProps>`

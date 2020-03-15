@@ -1,30 +1,29 @@
 import styled from '@emotion/styled';
 import { darken } from 'polished';
-
-const RADIUS = '10px'; // ToDo: Should be provided from theme configure
-const COLOR_BASE = '#E0E5EC';
-const COLOR_LIGHTER = '#FFFFFF';
-const COLOR_DARKER = '#A3B1C6';
+import { shadowInset, shadowDefault } from '../../../utilities/shadow';
+import { darker, primary, base, lighter } from '../../../utilities/color';
+// ToDo: Should be provided from theme configure
 
 const commonStyle = `
   border: unset;
   border-radius: 6px;
-  box-shadow: 1px 1px 3px ${COLOR_DARKER} inset, -1px -1px 3px ${COLOR_LIGHTER} inset,
-    -1px -1px 1px ${COLOR_DARKER}, 1px 1px 1px ${COLOR_LIGHTER};
+  box-sizing: border-box;
+  box-shadow: ${shadowInset};
+  color: ${darken(0.1, darker)};
   font-size: 16px;
-  color: ${darken(0.1, COLOR_DARKER)};
+  padding: 8px;
+  transition: 0.3s;
+  width: 100%;
   ::placeholder,
   ::-webkit-input-placeholder {
-    color: ${darken(0.1, COLOR_BASE)};
+    color: ${darken(0.1, base)};
   }
   :-ms-input-placeholder {
-     color: ${darken(0.1, COLOR_BASE)};
+     color: ${darken(0.1, base)};
   }
-  padding: 8px;
-  box-sizing: border-box;
-  width: 100%;
   &:focus {
     outline: unset;
+    box-shadow: 0 0 0 ${darker} inset, 0 0 0 ${lighter} inset, 0 1px 3px 1px ${primary};
   }
 `;
 
@@ -37,7 +36,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const Label = styled.p`
-  color: ${darken(0.1, COLOR_DARKER)};
+  color: ${darken(0.1, darker)};
   font-size: 14px;
   margin: 0;
 `;
