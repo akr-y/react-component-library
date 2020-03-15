@@ -1,3 +1,13 @@
+export type State =
+  | 'primary'
+  | 'secondary'
+  | 'plain'
+  | 'pressed'
+  | 'focused'
+  | 'destructive'
+  | 'outline'
+  | 'disabled';
+
 export type Color =
   | 'white'
   | 'black'

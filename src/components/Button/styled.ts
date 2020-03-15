@@ -9,6 +9,7 @@ import {
   lighter,
   secondary,
   base,
+  colorMap,
 } from '../../utilities/color';
 
 type ButtonProps = {
@@ -25,25 +26,74 @@ type ButtonProps = {
   textAlign?: TextAlign;
 };
 const RADIUS = '6px'; // ToDo: Should be provided from theme configure
-const commonStyle = (props: ButtonProps) => `
+
+const stateString = (props: ButtonProps) => {
+  if (props.primary) return 'primary';
+  if (props.secondary) return 'secondary';
+  if (props.destructive) return 'destructive';
+  if (props.disabled) return 'disabled';
+};
+
+const rippleStyle = (color?: string) => `
+
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, ${darken(
+      0.1,
+      color || darker
+    )} 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10,10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+
+  &:active:after {
+    transform: scale(0,0);
+    opacity: .2;
+    transition: 0s;
+  }
+`;
+const styleWithProps = (props: ButtonProps) => `
+  background: ${background(props)}
   border: unset;
   border-radius: ${RADIUS};
-  padding: ${paddingSize(props.size)};
   box-shadow: ${boxShadow(props)}
-  background: ${background(props)}
   color: ${fontColor(props)};
-  pointer-events: ${props.disabled ? ' none' : 'unset'};
+  cursor: pointer;
   font-size: 16px;
   font-weight: normal;
   outline: unset;
-  transition-duration: 0.5s;
+  padding: ${paddingSize(props.size)};
+  pointer-events: ${props.disabled ? ' none' : 'unset'};
+  transition-duration: 0.3s;
   transition-timing-function: ease-in;
+  
+  ${rippleStyle(stateString(props) ? colorMap(stateString(props)) : undefined)}
 `;
 
-const commonFeedbackStyle = `
-  box-shadow: -8px -8px 20px ${lighter}, 8px 8px 20px ${darker}, -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};
-  transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(.15,2.1,.5,.60);
+const styleFeedbackWithProps = (props: ButtonProps) => `
+  box-shadow: ${
+    props.pressed
+      ? `
+      0px 0px 0px ${darker} inset, 0 0 0 ${lighter} inset,
+        -8px -8px 20px ${lighter}, 8px 8px 20px ${darker};`
+      : `-8px -8px 20px ${lighter}, 8px 8px 20px ${darker}, -1px -1px 0px ${lighter}, 1px 1px 0px ${darker};`
+  }
+  transition-duration: 0.2s;
+  transition-timing-function: ease-oun;
 `;
 
 const paddingSize = (s?: Size) => {
@@ -114,16 +164,16 @@ const boxShadow = (props: ButtonProps) => {
 };
 
 export const StyledButton = styled.button<ButtonProps>`
-  ${props => commonStyle(props)}
+  ${props => styleWithProps(props)}
   &:hover {
-    ${commonFeedbackStyle}
+    ${props => styleFeedbackWithProps(props)}
   }
 `;
 
 export const StyledAnchor = styled.a<ButtonProps>`
-  ${props => commonStyle(props)}
+  ${props => styleWithProps(props)}
   text-decolation: none;
   &:hover {
-    ${commonFeedbackStyle}
+    ${props => styleFeedbackWithProps(props)}
   }
 `;
