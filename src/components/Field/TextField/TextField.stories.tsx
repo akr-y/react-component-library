@@ -14,7 +14,6 @@ export const defaultTextField = () => {
     <Container>
       <TextField
         label="Label"
-        labelHidden
         value={text}
         placeholder={'placeholder'}
         onChange={(v: string) => {

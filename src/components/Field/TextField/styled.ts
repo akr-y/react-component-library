@@ -23,7 +23,7 @@ const commonStyle = `
   }
   &:focus {
     outline: unset;
-    box-shadow: 0 0 0 ${darker} inset, 0 0 0 ${lighter} inset, 0 1px 3px 1px ${primary};
+    box-shadow: 0 0 0 ${darker} inset, 0 0 0 ${lighter} inset, 0 0 5px ${primary};
   }
 `;
 
@@ -36,11 +36,11 @@ export const TextArea = styled.textarea`
 `;
 
 export const Label = styled.p`
-  color: ${darken(0.1, darker)};
+  color: ${darken(0.3, darker)};
   font-size: 14px;
   margin: 0;
 `;
 
-export const Container = styled.div`
+export const Container = styled.label`
   width: auto;
 `;
