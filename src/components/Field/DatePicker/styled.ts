@@ -24,7 +24,7 @@ export const MonthStyled = styled.div<{
   margin-top: ${base}px;
   margin-left: ${base}px;
   max-width: calc(100% - ${base}px);
-  min-width: 230px;
+  min-width: 200px;
   font-weight: ${props => (props.current ? 700 : 400)};
 `;
 
