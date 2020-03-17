@@ -55,12 +55,12 @@ const isSameDate = (a: Date, b: Date) => {
   );
 };
 
-export function dateIsSelected(day: Date | null, dates: Date[]) {
+export function dateIsSelected(day: Date, dates: Date[]) {
   if (day == null) {
     return false;
   }
 
-  return Boolean(dates.map(_ => isSameDate(_, day)).includes(true));
+  return Boolean(dates.map((_: Date) => isSameDate(_, day)).includes(true));
 }
 function arrayUnique(array: Date[]) {
   let i = 0;

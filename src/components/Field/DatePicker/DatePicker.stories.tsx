@@ -9,7 +9,7 @@ const Container = styled.div`
 export default { title: 'DatePicker' };
 
 export const defaultDatePicker = () => {
-  const [days, setDays] = useState<Date[]>([new Date('2020-02-05 00:00:00')]);
+  const [days, setDays] = useState<Date[]>([new Date('2020/02/05 00:00:00')]);
   const [{ month, year }, setDate] = useState({
     month: 1,
     year: 2018,

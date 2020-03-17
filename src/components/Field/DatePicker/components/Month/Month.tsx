@@ -101,12 +101,12 @@ export function Month({
 
     return (
       <Day
-        focused={focusedDate != null && isSameDay(day, focusedDate)}
+        focused={focusedDate && isSameDay(day, focusedDate)}
         day={day}
         key={dayIndex}
         onFocus={onFocus}
         onClick={handleDateClick}
-        selected={selected != null && dateIsSelected(day, selected)}
+        selected={selected && dateIsSelected(day, selected)}
         disabled={disabled}
       />
     );

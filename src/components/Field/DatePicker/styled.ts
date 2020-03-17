@@ -86,6 +86,7 @@ export const DayStyled = styled.button<DayProps>`
   outline: none;
   font-size: ${FONT_SIZE}px;
   font-weight: ${props => (props.today ? 700 : 400)};
+  height: 100%;
   text-align: center;
   cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   z-index: ${props => (props.selected ? ZINDEX_SELECTED : 1)};
@@ -99,9 +100,6 @@ export const DayStyled = styled.button<DayProps>`
     color: #fff;
     background: ${darken(0.15, darker)};
     border-color: ${primary};
-  }
-  &:focus {
-    // box-shadow: inset 0 0 0 2px ${primary};
   }
 `;
 
