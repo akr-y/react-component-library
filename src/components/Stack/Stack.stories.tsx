@@ -6,8 +6,8 @@ export default { title: 'Stack' };
 export const defaultStack = () => {
   return (
     <Stack>
-      <Stack.Item>
-        <p>Item 1</p>
+      <Stack.Item fill>
+        <p>Item 1 fill</p>
       </Stack.Item>
       <Stack.Item>
         <p>Item 2</p>

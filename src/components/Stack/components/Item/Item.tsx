@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+interface Props {
+  fill: number;
+}
+
 const BASE_SPACING = 14;
-const ItemComponent = styled.div<{ fill: boolean }>`
+const ItemComponent = styled.div<Props>`
   flex: ${props => (props.fill ? '1 1 auto' : '0 0 auto')};
   min-width: 0;
   margin-top: ${BASE_SPACING}px;
@@ -21,5 +25,5 @@ export interface ItemProps {
 }
 
 export function Item({ children, fill }: ItemProps) {
-  return <ItemComponent fill>{children}</ItemComponent>;
+  return <ItemComponent fill={fill ? 1 : 0}>{children}</ItemComponent>;
 }
