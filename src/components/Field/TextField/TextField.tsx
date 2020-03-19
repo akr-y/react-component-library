@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Error, Key } from '../../../types';
-import { Input, TextArea, Label, Container } from './styled';
+import { Input, TextArea, Label, Container, FieldContainer } from './styled';
 
 type Type =
   | 'text'
@@ -241,11 +241,15 @@ export const TextField = ({
   return (
     <Container>
       {label && !labelHidden ? <Label>{label}</Label> : null}
-      <div onFocus={handleFocus} onBlur={handleBlur} onClick={handleClick}>
+      <FieldContainer
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onClick={handleClick}
+      >
         {prefixMarkup}
         {multiline ? textarea : input}
         {suffixMarkup}
-      </div>
+      </FieldContainer>
     </Container>
   );
 

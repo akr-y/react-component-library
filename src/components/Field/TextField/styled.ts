@@ -1,14 +1,26 @@
 import styled from '@emotion/styled';
 import { darken } from 'polished';
 import { shadowInset, shadowDefault } from '../../../utilities/shadow';
-import { darker, primary, base, lighter } from '../../../utilities/color';
-// ToDo: Should be provided from theme configure
+import {
+  darker,
+  primary,
+  base,
+  lighter,
+  secondary,
+} from '../../../utilities/color';
 
-const commonStyle = `
+interface Props {
+  disabled?: boolean;
+}
+
+const commonStyle = (props: Props) => `
   border: unset;
   border-radius: 6px;
   box-sizing: border-box;
-  box-shadow: ${shadowInset};
+  box-shadow: ${
+    props.disabled ? `0 0 0 1px ${darken(0.2, base)} inset` : shadowInset
+  };
+  background: ${props.disabled ? base : '#fff'};
   color: ${darken(0.1, darker)};
   font-size: 16px;
   padding: 8px;
@@ -28,11 +40,11 @@ const commonStyle = `
 `;
 
 export const Input = styled.input`
-  ${commonStyle}
+  ${props => commonStyle(props)}
 `;
 
 export const TextArea = styled.textarea`
-  ${commonStyle}
+  ${props => commonStyle(props)}
 `;
 
 export const Label = styled.p`
@@ -43,4 +55,7 @@ export const Label = styled.p`
 
 export const Container = styled.label`
   width: auto;
+`;
+export const FieldContainer = styled.div`
+  position: relative;
 `;
