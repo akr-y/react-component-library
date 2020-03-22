@@ -73,7 +73,6 @@ export const DatePicker = ({
 
   const handleMonthChangeClick = useCallback(
     (month: Months, year: Year) => {
-      console.log(month, year);
       if (!onMonthChange) {
         return;
       }

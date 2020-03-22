@@ -11,6 +11,7 @@ export default { title: 'TextField' };
 
 export const defaultTextField = () => {
   const [text, setText] = useState('');
+  const [textError, setTextError] = useState('Error Text');
   return (
     <Container>
       <Stack vertical>
@@ -19,6 +20,7 @@ export const defaultTextField = () => {
             label="Label"
             value={text}
             placeholder={'placeholder'}
+            helpText="Help text"
             onChange={(v: string) => {
               setText(v);
             }}
@@ -31,6 +33,17 @@ export const defaultTextField = () => {
             disabled
             onChange={(v: string) => {
               setText(v);
+            }}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <TextField
+            label="Label"
+            value={textError}
+            error
+            helpText="Help text"
+            onChange={(v: string) => {
+              setTextError(v);
             }}
           />
         </Stack.Item>

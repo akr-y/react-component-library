@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Error, Key } from '../../../types';
-import { Input, TextArea, Label, Container, FieldContainer } from './styled';
+import {
+  Input,
+  TextArea,
+  Label,
+  Container,
+  FieldContainer,
+  HelpText,
+} from './styled';
 
 type Type =
   | 'text'
@@ -186,6 +193,7 @@ export const TextField = ({
     readOnly,
     role,
     autoFocus,
+    'error': Boolean(error),
     'value': normalizedValue,
     placeholder,
     onFocus,
@@ -214,6 +222,7 @@ export const TextField = ({
     readOnly,
     role,
     autoFocus,
+    'error': Boolean(error),
     'value': normalizedValue,
     placeholder,
     onFocus,
@@ -240,7 +249,9 @@ export const TextField = ({
 
   return (
     <Container>
-      {label && !labelHidden ? <Label>{label}</Label> : null}
+      {label && !labelHidden ? (
+        <Label error={Boolean(error)}>{label}</Label>
+      ) : null}
       <FieldContainer
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -250,6 +261,7 @@ export const TextField = ({
         {multiline ? textarea : input}
         {suffixMarkup}
       </FieldContainer>
+      <HelpText error={Boolean(error)}>{helpText}</HelpText>
     </Container>
   );
 
